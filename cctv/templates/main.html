@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smartcam</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo">Smartcam</h1>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="main" id="main">
+                <h2>Data Analytics &amp; Advanced Neural Networks Solutions</h2>
+                <p>We are a team of designers and developers that create high quality HTML Templates & Themes. Pay with the world’s most popular and secure payment methods.</p>
+                <a href={% url "home" %} class="btn">Get Started</a>
+            </div>
+        </div>
+    </section>
+ 
+    
+    <!-- Services Section -->
+    <section class="services" id="c">
+        <div class="container">
+            <div class="service-item">
+                <img src={% static '12.jfif' %} alt="Video Calling Icon" class="img_scr">
+                <h3>People count</h3>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+            </div>
+            <div class="service-item">
+                <img src={% static '13.jfif' %} alt="Video Conference Icon"class="img_scr" >
+                <h3>Object Detection</h3>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+            </div>
+            <div class="service-item">
+                <img src={% static '12.jfif' %} alt="Live Events Icon" class="img_scr">
+                <h3>Live Events</h3>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+            </div>
+        </div>
+    </section>
+
+   </div>
+
+</body>
+</html>

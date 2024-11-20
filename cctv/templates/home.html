@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCTV Object Detection</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(45deg, #3498db, #8e44ad, #e74c3c);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px 0;
+            text-align: center;
+            margin: 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Container for Buttons */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        button {
+            font-size: 18px;
+            padding: 15px 30px;
+            margin: 0 20px;
+            cursor: pointer;
+            border-radius: 8px;
+            border: none;
+            background-color: #3498db;
+            color: white;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+            box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+        /* Video Container Styles */
+        #video-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+            padding: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* Video Style */
+        #people-count-video, #object-detect-video {
+            display: none;
+            width: 100%;
+            max-width: 900px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Custom Tooltip Style */
+        .tooltip {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1.2em;
+            display: none;
+        }
+
+        /* Animation for Gradient */
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Box Shadow on Buttons */
+        button:active {
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <h1>Live CCTV Stream with Object Detection</h1>
+
+    <!-- Buttons to switch between video feeds -->
+    <div class="button-container">
+        <button onclick="showPeopleCount()">People Count</button>
+        <button onclick="showObjectDetection()">Object Detection</button>
+    </div>
+
+    <!-- Video Feed Container -->
+    <div id="video-container">
+        <!-- People Count Video Feed -->
+        <img id="people-count-video" src="{% url 'video_feed_people_count' %}" alt="People Count Video">
+        
+        <!-- Object Detection Video Feed -->
+        <img id="object-detect-video" src="{% url 'video_feed_object_detection' %}" alt="Object Detection Video">
+    </div>
+
+    <!-- Tooltip -->
+    <div class="tooltip" id="tooltip">
+        Click a button to switch between feeds
+    </div>
+
+    <script>
+        // Function to display the people count video
+        function showPeopleCount() {
+            document.getElementById("people-count-video").style.display = "block";
+            document.getElementById("object-detect-video").style.display = "none";
+            showTooltip("People Count Feed is now displayed!");
+        }
+
+        // Function to display the object detection video
+        function showObjectDetection() {
+            document.getElementById("people-count-video").style.display = "none";
+            document.getElementById("object-detect-video").style.display = "block";
+            showTooltip("Object Detection Feed is now displayed!");
+        }
+
+        // Function to show the tooltip
+        function showTooltip(message) {
+            var tooltip = document.getElementById("tooltip");
+            tooltip.innerText = message;
+            tooltip.style.display = "block";
+            setTimeout(function() {
+                tooltip.style.display = "none";
+            }, 3000);  // Tooltip will disappear after 3 seconds
+        }
+
+        // Set default view to people count
+        showPeopleCount();
+    </script>
+</body>
+</html>
